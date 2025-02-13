@@ -18,7 +18,7 @@ pip install requests
 ```
 git clone https://github.com/treslecheson/flash.git
 
-cd flash
+cd flash/
 
 chmod +x setup.sh
 
