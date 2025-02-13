@@ -35,4 +35,4 @@ chmod +x setup.sh
 
 ./setup.sh
 ```
-## Anki must be running to add cards
+## Note: Anki must be running to add cards
