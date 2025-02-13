@@ -273,7 +273,7 @@ cli = [
 result = prompt(cli)
 command = result[0]
 print(command)
-diff_cli = [
+cli2 = [
     {"type": "list", "message": f"{command}", "choices": vim_cheat_sheet[f"{command}"]}
 ]
 
