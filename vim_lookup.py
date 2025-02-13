@@ -1,8 +1,17 @@
+#!/usr/bin/env python3
+from turtle import st
 from InquirerPy.resolver import prompt
 import json
 import urllib.request
 import json
 import requests
+from colorama import Fore, Style, init
+
+init()
+
+red = Fore.RED
+blue= Fore.BLUE
+
 
 
 vim_cheat_sheet = {
@@ -275,14 +284,16 @@ cli = [
 
 result = prompt(cli)
 command_type = result[0]
+print()
 cli2 = [
     {"type": "list", "message": f"{command_type}", "choices": vim_cheat_sheet[f"{command_type}"]}
 ]
 
 result2 = prompt(cli2)
 command = result2[0]
-print(command)
-print(vim_cheat_sheet[f"{command_type}"][f"{command}"])
+com = vim_cheat_sheet[f"{command_type}"][f"{command}"]
+print(f"{red}{com}")
+print()
 
 add_choice = [
     {"type": "list", "message": "Do you want to make an Anki card?", "choices": ["Yes", "No"]}
@@ -305,7 +316,7 @@ if add_choice_result == "Yes":
        "params":{
           "notes":[
              {
-                "deckName":"test1",
+                "deckName":"vim",
                 "modelName":"Basic",
                 "fields":{
                    "Front":command,
@@ -315,6 +326,4 @@ if add_choice_result == "Yes":
           ]
        }
     }
-    response = requests.post("http://localhost:8765", json=note)
-    print(response.json())
-
+ 
