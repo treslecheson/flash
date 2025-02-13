@@ -3,7 +3,10 @@
 ## Prequisites
 
 ### Anki 
-
+MacOS
+```brew install anki```
+Arch
+```yay -S anki```
 https://apps.ankiweb.net/
 
 ### Anki with the AnkiConnect add on
