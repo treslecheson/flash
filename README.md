@@ -11,7 +11,9 @@ Other: https://apps.ankiweb.net/
 
 ### Anki with the AnkiConnect add on
 
-Add-on code ```2055492159```   https://ankiweb.net/shared/info/2055492159
+Add-on code ```2055492159```  
+
+https://ankiweb.net/shared/info/2055492159
 
 Tools -> Add-ons -> Get-Add-Ons -> paste 2055492159 -> Restart Anki
 
