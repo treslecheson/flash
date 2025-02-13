@@ -1,6 +1,6 @@
 # Vim Flash README
 ## Demo
-<video src="flash.mp4" controls></video>
+<img src="flash.gif" width="200"/>
 
 ## Prequisites
 
