@@ -1,4 +1,8 @@
 from InquirerPy.resolver import prompt
+import json
+import urllib.request
+import json
+import requests
 
 
 vim_cheat_sheet = {
@@ -264,22 +268,53 @@ vim_cheat_sheet = {
     },
 }
 
-print(vim_cheat_sheet["cursor_movement"]["h"])
 
 cli = [
     {"type": "list", "message": "Vim Cheatsheet", "choices": vim_cheat_sheet}
 ]
 
 result = prompt(cli)
-command = result[0]
-print(command)
+command_type = result[0]
 cli2 = [
-    {"type": "list", "message": f"{command}", "choices": vim_cheat_sheet[f"{command}"]}
+    {"type": "list", "message": f"{command_type}", "choices": vim_cheat_sheet[f"{command_type}"]}
 ]
 
-result2 = prompt(diff_cli)
-command2 = result2[0]
-print(command2)
-print(vim_cheat_sheet[f"{command}"][f"{command2}"])
+result2 = prompt(cli2)
+command = result2[0]
+print(command)
+print(vim_cheat_sheet[f"{command_type}"][f"{command}"])
 
+add_choice = [
+    {"type": "list", "message": "Do you want to make an Anki card?", "choices": ["Yes", "No"]}
+]
+
+add_choice_result = prompt(add_choice)
+add_choice_result = add_choice_result[0]
+
+
+
+
+
+
+
+if add_choice_result == "Yes":
+
+    note = {
+       "action":"addNotes",
+       "version":6,
+       "params":{
+          "notes":[
+             {
+                "deckName":"test1",
+                "modelName":"Basic",
+                "fields":{
+                   "Front":command,
+                   "Back":vim_cheat_sheet[f"{command_type}"][f"{command}"]
+                }
+             },
+          ]
+       }
+    }
+    response = requests.post("http://localhost:8765", json=note)
+    print(response.json())
 
