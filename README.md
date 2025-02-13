@@ -1,4 +1,4 @@
-# Vim Lookup and Flash Cards
+# Vim Flash README
 
 ## Prequisites
 
