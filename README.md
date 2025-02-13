@@ -1,6 +1,7 @@
 # Vim Flash README
 ## Demo
-<video src='flash.mp4' width=180/>
+<video src="flash.mp4" controls></video>
+
 ## Prequisites
 
 ### Anki 
