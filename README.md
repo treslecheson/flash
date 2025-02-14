@@ -20,8 +20,7 @@ Tools -> Add-ons -> Get-Add-Ons -> paste 2055492159 -> Restart Anki
 ## Python Dependencies
 
 ```
-pip install InquirerPy
-pip install requests
+pip install InquirerPy requests colorama
 ```
 
 
