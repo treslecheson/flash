@@ -38,6 +38,6 @@ chmod +x setup.sh
 ```
 ## Usage
 
-Type ```flash```
+Run ```flash```
 
 ## Note: Anki must be running to add cards
