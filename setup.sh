@@ -1,4 +1,4 @@
 #!/bin/bash
 
 chmod +x flash
-sudo mv ~/flash/flash /usr/local/bin/
+sudo mv flash /usr/local/bin/
