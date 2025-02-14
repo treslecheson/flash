@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-from turtle import st
 from InquirerPy.resolver import prompt
 import json
-import urllib.request
 import json
 import requests
-from colorama import Fore, Style, init
+from colorama import Fore, init
 
 init()
 
