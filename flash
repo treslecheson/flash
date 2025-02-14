@@ -12,6 +12,7 @@ init()
 red = Fore.RED
 blue= Fore.BLUE
 
+anki_url = "http://localhost:8765"
 
 
 vim_cheat_sheet = {
@@ -327,3 +328,4 @@ if add_choice_result == "Yes":
        }
     }
  
+    respones = requests.post(anki_url, data=json.dumps(note))
