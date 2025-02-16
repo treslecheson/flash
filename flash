@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
+from InquirerPy import inquirer
 from InquirerPy.resolver import prompt
+from InquirerPy.inquirer import select
 import json
 import requests
 from colorama import Fore, init
-
+ 
 init()
-
+ 
 red = Fore.RED
 blue= Fore.BLUE
-
 anki_url = "http://localhost:8765"
-
-
+ 
+ 
 vim_cheat_sheet = {
     "global": {
         ":h[elp] keyword": "open help for keyword",
@@ -274,41 +275,45 @@ vim_cheat_sheet = {
         ":diffo[ff]": "switch off diff mode for current window",
     },
 }
-
-
-cli = [
-    {"type": "list", "message": "Vim Cheatsheet", "choices": vim_cheat_sheet}
-]
-
-result = prompt(cli)
-command_type = result[0]
-print()
-cli2 = [
-    {"type": "list", "message": f"{command_type}", "choices": vim_cheat_sheet[f"{command_type}"]}
-]
-
-result2 = prompt(cli2)
-command = result2[0]
-com = vim_cheat_sheet[f"{command_type}"][f"{command}"]
-print(f"{red}{com}")
+ 
+vim_type_cli = inquirer.select(
+    message="Vim Cheatsheet",
+    choices= vim_cheat_sheet,
+    vi_mode=True,
+).execute()
+vim_type_cli_result = vim_type_cli
+ 
 print()
 
-add_choice = [
-    {"type": "list", "message": "Do you want to make an Anki card?", "choices": ["Yes", "No"]}
-]
+command_cli = inquirer.select(
+    message=vim_type_cli_result,
+    choices=vim_cheat_sheet[f"{vim_type_cli_result}"],
+    vi_mode=True,
+).execute()
+command_cli_result = command_cli
+command = vim_cheat_sheet[f"{vim_type_cli_result}"][f"{command_cli_result}"]
+print(f"{red}{command}")
+print()
 
-add_choice_result = prompt(add_choice)
-add_choice_result = add_choice_result[0]
+add_message = "Do you want to make an Anki Card?" 
+yes_no: list[str] = ['Yes', 'No']
+add_choice_cli = inquirer.select(
+    message=add_message,
+    choices=yes_no,
+    vi_mode=True,
+).execute()
 
+add_choice_result = add_choice_cli
 
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
 if add_choice_result == "Yes":
-
-    note = {
+ 
+    card = {
        "action":"addNotes",
        "version":6,
        "params":{
@@ -317,12 +322,12 @@ if add_choice_result == "Yes":
                 "deckName":"vim",
                 "modelName":"Basic",
                 "fields":{
-                   "Front":command,
-                   "Back":vim_cheat_sheet[f"{command_type}"][f"{command}"]
+                   "Front":command_cli_result,
+                   "Back":command
                 }
              },
           ]
        }
     }
  
-    respones = requests.post(anki_url, data=json.dumps(note))
+respones = requests.post(anki_url, data=json.dumps(card))
